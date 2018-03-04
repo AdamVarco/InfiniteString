@@ -74,11 +74,26 @@ void replaceAll(char s[],char old,char newS){
     }
     printf("\n New String \n%s", s);
 }
+char *sorted(char *string){
+     int n = strlen(string), i,j;
+     char temp;
+      for (i = 0; i < n-1; i++) {
+      for (j = i+1; j < n; j++) {
+         if (string[i] > string[j]) {
+            temp = string[i];
+            string[i] = string[j];
+            string[j] = temp;
+         }
+      }
+   }
+   return string;
+}
 
 int main(void){
     char *m, old, newS;
     int i;
     int flag = 0, total =0;
+
     printf("input string : ");
     m = infiniteString(stdin, 10);
     printf("%s\n", m);
@@ -98,9 +113,13 @@ int main(void){
         printf("\nTotal is ");
         printf("\n%d",total);
     }
-    printf("Please enter a old char and a new char");
+    printf("\nPlease enter a old char and a new char");
     scanf(" %c %c",&old,&newS);
     replaceAll(m,old,newS);
+    printf("\n The sorted string \n");
+    char *sort = sorted(m);
+    printf("%s", sort);
+    printf("\n%s",m);
     printf("\nNo Dups\n");
     noDups(m);
     puts(m);
